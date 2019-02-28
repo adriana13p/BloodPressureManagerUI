@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Elegant Modal Login Modal Form with Avatar Icon</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/agenda.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+<!--<div class="text-center">-->
+<!--&lt;!&ndash; Button HTML (to Trigger Modal) &ndash;&gt;-->
+<!--<a href="#myModal" class="trigger-btn" data-toggle="modal">Click to Open Login Modal</a>-->
+<!--</div>-->
+
+<!-- Modal HTML -->
+
+    <div class="showOnLogged">
+        <div id="layout" class="x-borders">
+        <header>
+            <div>
+                <a id="logo" href="." title="Blood Pressure Manager">
+                    <img src="img/logo.png" alt="FastTrackIT" title="FastTrackIT">
+                </a>
+                <h1>Welcome to our First Web Site made @ FastTrackIT</h1>
+            </div>
+        </header>
+        <div id="content">
+            <div id="breadcrumb">Blood pressures</div>
+
+            <form class="add-form" action="" onsubmit="return false" method="post">
+                <table id="bpTable">
+                    <thead>
+                    <tr data-id="">
+                        <th>Date</th>
+                        <th>Systolic</th>
+                        <th>Diastolic</th>
+                        <th>Pulse</th>
+                        <th>Notes</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </form>
+            <div class="clear"></div>
+        </div>
+
+        </div>
+    </div>
+</body>
+<div id="myModal" class="modal fade in" style="display: block;">
+    <div class="modal-dialog modal-login">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="avatar">
+                    <img src="img/avatar.png" alt="Avatar">
+                </div>
+                <h4 class="modal-title">Member Login</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="modalLoginContent">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="username" placeholder="Username"
+                               required="required" value="David13">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="Password"
+                               required="required" value="David13">
+                    </div>
+                    <div class="form-group">
+                        <button onclick="window.PhoneBook.login(event);" type="submit"
+                                class="btn btn-primary btn-lg btn-block login-btn">Login
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <span id="userForm">Insert Username and Password</span>
+                <span id="userIncorrect">Username and Password don't match </span>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/phone-book.js"></script>
+
+</body>
+</html>

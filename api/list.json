@@ -1,0 +1,18 @@
+{
+"id": 14,
+"name": "My agenda",
+"contacte": [
+{
+"id": 15,
+"firstName": "Ana",
+"lastName": "Popescu",
+"phone": "33333"
+},
+{
+"id": 22,
+"firstName": "Ion",
+"lastName": "Georgescu",
+"phone": "22222"
+}
+]
+}
