@@ -51,7 +51,7 @@ header h1 {
 }
 
 #breadcrumb {
-    background: #dcdcdc url("../img/house.png") 3px center no-repeat;
+    background: #dcdcdc  3px center no-repeat;
     padding: 10px 5px 10px 40px;
     border: 1px solid #60c7c1;
     border-radius: 3px;
@@ -161,3 +161,13 @@ footer {
 .red-element {
     color: red;
 }
+.logOut .btn{
+	 color: #fff;
+            border-radius: 4px;
+    		background: #60c7c1;
+    		text-decoration: none;
+    		transition: all 0.4s;
+            line-height: normal;
+            border: none;
+            align: right;
+	}

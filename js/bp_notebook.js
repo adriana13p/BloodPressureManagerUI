@@ -5,14 +5,23 @@ var API_URL = {
 
     LOGIN: 'http://localhost:8031/login',
     LOAD_BP: 'http://localhost:8031/bloodPressureForUser/',
+    CREATE_BP: 'http://localhost:8031/saveBloodPressure/',
+    UPDATE_BP: 'http://localhost:8031/updateBloodPressure/',
+
+
     READ: 'http://localhost:8011/agenda/14',
     UPDATE: 'http://localhost:8011/agenda/14/contact/',
     DELETE: 'http://localhost:8031/deleteBloodPressure/'
 };
 //window.PhoneBook.getRow({firstName:"ana"})
-window.PhoneBook = {
+window.BP_Notebook = {
     loggedUser: null,
+ logOut: function(event){
+         $(".showOnLogged").hide();
+         location.reload();;
+ },
     login: function(event) {
+    //for bp
      var username = $(event.target).parents("#modalLoginContent").find('input[name="username"]').val(),
          pass = $(event.target).parents("#modalLoginContent").find('input[name="password"]').val();
 
@@ -33,8 +42,8 @@ window.PhoneBook = {
             if (response) {
                 $("#myModal").hide();
                 $("body").addClass("loggedIn");
-                window.PhoneBook.loggedUser = username;
-                window.PhoneBook.load();
+                window.BP_Notebook.loggedUser = username;
+                window.BP_Notebook.load();
             }
             else {
                 // show database connection not working
@@ -52,18 +61,19 @@ window.PhoneBook = {
                    $(".form-control[name='username']").val('');
                    $(".form-control[name='password']").val('');
         });
-        console.log(username, pass, 1);
+        console.log(username, pass);
         event.preventDefault();
         return false;
     },
 
 
     load: function () {
+    //for bp
         $.ajax({
-            url: API_URL.LOAD_BP + window.PhoneBook.loggedUser,
+            url: API_URL.LOAD_BP + window.BP_Notebook.loggedUser,
             method: "GET"
         }).done(function (responseBP) {
-            PhoneBook.display(responseBP);
+            BP_Notebook.display(responseBP);
         });
     },
 
@@ -71,9 +81,8 @@ window.PhoneBook = {
 
 
  getRow: function(listItem) {
+ //for bp
         // ES6 string template
-
-
 
         return `<tr>
             <td>${listItem.dateBP}</td>
@@ -82,27 +91,29 @@ window.PhoneBook = {
             <td>${listItem.pulseBP}</td>
             <td>${listItem.notesBP}</td>
             <td><a data-id="${listItem.idBP}" class="edit">
-             <img src="img/edit1.png" alt="Edit" title="Edit">
-             </a></td>
-            <td><a data-id="${listItem.idBP}" class="delete">
-            <img src="img/delete1.png" alt="Delete" title="Delete">
-            </a></td>
+                   <img src="img/edit1.png" alt="Edit" title="Edit">
+               </a>
+               <a data-id="${listItem.idBP}" class="delete">
+                    <img src="img/delete1.png" alt="Delete" title="Delete">
+               </a>
+            </td>
         </tr>`;
     },
     getActionRow: function() {
+    //for bp
         // ES5 string concatenation
         return '<tr>' +
-            '<td><input type="text" required name="firstName" placeholder="Enter first name"></td>' +
-            '<td><input type="text" name="lastName" placeholder="Enter last name"></td>' +
-            '<td><input type="text" required name="phone" placeholder="Enter phone"></td>' +
+            '<td><input type="text" required name="bpDate" placeholder="Enter date"></td>' +
+            '<td><input type="text" required name="systolic" placeholder="Enter systolic value"></td>' +
+            '<td><input type="text" required name="diastolic" placeholder="Enter diastolic value"></td>' +
+            '<td><input type="text" required name="pulse" placeholder="Enter pulse value"></td>' +
+            '<td><input type="text" required name="notes" placeholder="Enter notes"></td>' +
             '<td><button type="submit">Save</button></td>' +
             '</tr>';
-
-
-
     },
 
     delete: function(id) {
+    //for bp
         $.ajax({
             url: API_URL.DELETE + id,
             method: "DELETE",
@@ -112,72 +123,79 @@ window.PhoneBook = {
             }
         }).done(function (response) {
             if (response) {
-                PhoneBook.load();
+                BP_Notebook.load();
             }
         });
     },
 
-    add: function gfd(person) {
-        console.log(person);
+    add: function addBP(bpToSave) {
+    // for bp
+        console.log(bpToSave);
         $.ajax({
-            url: API_URL.CREATE,
+            url: API_URL.CREATE_BP,
             headers: {
 
                 "Content-Type": "application/json"
             },
             method: "POST",
-            data: JSON.stringify(person, null, 2)
+            ///????
+            data: JSON.stringify(bpToSave)
         }).done(function (response) {
             if (response.success) {
-                PhoneBook.load();
+                BP_Notebook.load();
             }
         });
     },
 
-    save: function(person) {
-        console.log(person);
+    edit: function(id) {
+        console.log(id);
         $.ajax({
-            url: API_URL.UPDATE+person.id,
+            url: API_URL.UPDATE_BP+id,
             method: "PUT",
             headers: {
 
                 "Content-Type": "application/json"
             },
+            //?????
             data: JSON.stringify(person, null, 2)
         }).done(function (response) {
             if (response.success) {
                 editId = '';
-                PhoneBook.load();
+                BP_Notebook.load();
             }
         });
     },
 
     bindEvents: function() {
-        $('#phone-book tbody').delegate('a.edit', 'click', function () {
+        $('#bpTable tbody').delegate('a.edit', 'click', function () {
             var id = $(this).data('id');
-            PhoneBook.edit(id);
+            console.info('click on ', this, id);
+            BP_Notebook.edit(id);
         });
 
         $('#bpTable tbody').delegate('a.delete', 'click', function () {
+          //for bp
             debugger;
             var id = $(this).data('id');
             console.info('click on ', this, id);
-            PhoneBook.delete(id);
+            BP_Notebook.delete(id);
         });
 
         $( ".add-form" ).submit(function() {
-            const person = {
-                firstName: $('input[name=firstName]').val(),
-                lastName: $('input[name=lastName]').val(),
-                phone: $('input[name=phone]').val()
+        //for bp
+            const bpToSave = {
+                dateBP: $('input[name=bpDate]').val(),
+                systolicBP: $('input[name=systolic]').val(),
+                diastolicBP: $('input[name=diastolic]').val(),
+                pulseBP: $('input[name=pulse]').val(),
+                notesBP: $('input[name=notes]').val(),
+                //???? loggedUser = username
+                idUser: loggedUser,
+
             };
 
-            if (editId) {
-                person.id = editId;
-                PhoneBook.save(person);
-            } else {
-                PhoneBook.add(person);
-            }
+            //add a bp to the list
+            BP_Notebook.add(bpToSave);
         });
     },
 
@@ -207,17 +225,16 @@ window.PhoneBook = {
     },
 
     display: function(list) {
+    //for bp
         window.list = list;
         var rows = '';
 
         // ES6 function systax inside forEach
-        list.forEach(listItem => rows += PhoneBook.getRow(listItem));
-        //rows += PhoneBook.getActionRow();
+        list.forEach(listItem => rows += BP_Notebook.getRow(listItem));
+        rows += BP_Notebook.getActionRow();
         $('#bpTable tbody').html(rows);
     }
 };
 
 var persons = [];
-console.info('loading persons');
-//PhoneBook.load();
-PhoneBook.bindEvents();
+BP_Notebook.bindEvents();

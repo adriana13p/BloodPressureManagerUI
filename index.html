@@ -4,13 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Blood Pressure Manager</title>
+    <title>Blood Pressure Notebook</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/agenda.css">
+    <link rel="stylesheet" type="text/css" href="css/table.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -34,7 +34,12 @@
             </div>
         </header>
         <div id="content">
-            <div id="breadcrumb">Blood pressures</div>
+            <div id="breadcrumb">
+
+                <div><button onclick="window.BP_Notebook.logOut(event);" type="submit"
+                                         class="logOut btn">Log Out
+                </button> </div>
+            </div>
 
             <form class="add-form" action="" onsubmit="return false" method="post">
                 <table id="bpTable">
@@ -45,8 +50,8 @@
                         <th>Diastolic</th>
                         <th>Pulse</th>
                         <th>Notes</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
+                        <th>Actions</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -59,7 +64,7 @@
 
         </div>
         <footer>
-            <p>&copy;All rights reserved.</p>
+            <p></p>
         </footer>
     </div>
 </body>
@@ -84,7 +89,7 @@
                                required="required" value="David13">
                     </div>
                     <div class="form-group">
-                        <button onclick="window.PhoneBook.login(event);" type="submit"
+                        <button onclick="window.BP_Notebook.login(event);" type="submit"
                                 class="btn btn-primary btn-lg btn-block login-btn">Login
                         </button>
                     </div>
@@ -98,7 +103,7 @@
         </div>
     </div>
 </div>
-<script src="js/phone-book.js"></script>
+<script src="js/bp_notebook.js"></script>
 
 </body>
 </html>
