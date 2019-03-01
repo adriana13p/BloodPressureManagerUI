@@ -81,8 +81,12 @@ window.PhoneBook = {
             <td>${listItem.diastolicBP}</td>
             <td>${listItem.pulseBP}</td>
             <td>${listItem.notesBP}</td>
-            <td><a data-id="${listItem.idBP}" class="edit">Edit</a></td>
-            <td><a data-id="${listItem.idBP}" class="delete">Delete</a></td>
+            <td><a data-id="${listItem.idBP}" class="edit">
+             <img src="img/edit1.png" alt="Edit" title="Edit">
+             </a></td>
+            <td><a data-id="${listItem.idBP}" class="delete">
+            <img src="img/delete1.png" alt="Delete" title="Delete">
+            </a></td>
         </tr>`;
     },
     getActionRow: function() {
