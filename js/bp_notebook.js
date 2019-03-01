@@ -5,17 +5,15 @@ var API_URL = {
 
     LOGIN: 'http://localhost:8031/login',
     LOAD_BP: 'http://localhost:8031/bloodPressureForUser/',
-    CREATE_BP: 'http://localhost:8031/saveBloodPressure/',
+    //CREATE_BP: 'http://localhost:8031/saveBloodPressure/',
+    CREATE_BP: 'http://localhost:8031/saveBloodPressureForUserName/',
     UPDATE_BP: 'http://localhost:8031/updateBloodPressure/',
-
-
-    READ: 'http://localhost:8011/agenda/14',
-    UPDATE: 'http://localhost:8011/agenda/14/contact/',
     DELETE: 'http://localhost:8031/deleteBloodPressure/'
 };
 //window.PhoneBook.getRow({firstName:"ana"})
 window.BP_Notebook = {
     loggedUser: null,
+    editBPId: null, // if null -> POST else -> PUT
  logOut: function(event){
          $(".showOnLogged").hide();
          location.reload();;
@@ -78,8 +76,6 @@ window.BP_Notebook = {
     },
 
 
-
-
  getRow: function(listItem) {
  //for bp
         // ES6 string template
@@ -109,6 +105,7 @@ window.BP_Notebook = {
             '<td><input type="text" required name="pulse" placeholder="Enter pulse value"></td>' +
             '<td><input type="text" required name="notes" placeholder="Enter notes"></td>' +
             '<td><button type="submit">Save</button></td>' +
+
             '</tr>';
     },
 
@@ -147,7 +144,8 @@ window.BP_Notebook = {
         });
     },
 
-    edit: function(id) {
+    update: function(id, bpToSave) {
+    //for bp
         console.log(id);
         $.ajax({
             url: API_URL.UPDATE_BP+id,
@@ -157,7 +155,7 @@ window.BP_Notebook = {
                 "Content-Type": "application/json"
             },
             //?????
-            data: JSON.stringify(person, null, 2)
+            data: JSON.stringify(bpToSave)
         }).done(function (response) {
             if (response.success) {
                 editId = '';
@@ -165,6 +163,28 @@ window.BP_Notebook = {
             }
         });
     },
+       edit: function (id) {
+            // ES5 function systax inside find
+            editBPId = id;
+                console.log( window.list);
+            var editBP = window.list.find(function (oneBP) {
+                console.log("edit "+id);
+                return oneBP.idBP == id;
+            });
+            console.warn('edit', editBP);
+
+            if (editId) {
+                const cancelBtn = `<button onclick="BP_Notebook.cancelEdit(this)">Cancel</button>`;
+                $('#phone-book tbody tr:last-child() td:last-child()').append(cancelBtn);
+            }
+              $('input[name=bpDate]').val(editBP.dateBP),
+              $('input[name=systolic]').val(editBP.systolicBP),
+              $('input[name=diastolic]').val(editBP.diastolicBP),
+              $('input[name=pulse]').val(editBP.pulseBP),
+              $('input[name=notes]').val(editBP.notesBP)
+              //userName: window.BP_Notebook.loggedUser,
+        },
+
 
     bindEvents: function() {
         $('#bpTable tbody').delegate('a.edit', 'click', function () {
@@ -189,34 +209,18 @@ window.BP_Notebook = {
                 diastolicBP: $('input[name=diastolic]').val(),
                 pulseBP: $('input[name=pulse]').val(),
                 notesBP: $('input[name=notes]').val(),
-                //???? loggedUser = username
-                idUser: loggedUser,
+                userName: window.BP_Notebook.loggedUser,
 
             };
-
             //add a bp to the list
+            if (editBPId == null){
             BP_Notebook.add(bpToSave);
+            }else {
+            BP_Notebook.update(editBPId,bpToSave);
+            }
         });
     },
 
-    edit: function (id) {
-        // ES5 function systax inside find
-        var editPerson = persons.find(function (person) {
-            console.log(person.firstName);
-            return person.id == id;
-        });
-        console.warn('edit', editPerson);
-
-        if (editId) {
-            const cancelBtn = `<button onclick="PhoneBook.cancelEdit(this)">Cancel</button>`;
-            $('#phone-book tbody tr:last-child() td:last-child()').append(cancelBtn);
-        }
-
-        $('input[name=firstName]').val(editPerson.firstName);
-        $('input[name=lastName]').val(editPerson.lastName);
-        $('input[name=phone]').val(editPerson.phone);
-        editId = id;
-    },
 
     cancelEdit: function(button) {
         $( ".add-form" ).get(0).reset();
