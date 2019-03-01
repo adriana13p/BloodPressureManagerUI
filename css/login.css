@@ -90,3 +90,6 @@ body {
 	#userIncorrect{
 	    display: none;
 	}
+	#dbNotWorking{
+	    display: none;
+	}

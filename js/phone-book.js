@@ -37,9 +37,9 @@ window.PhoneBook = {
                 window.PhoneBook.load();
             }
             else {
-                // show user incorrect
+                // show database connection not working
                    $("#userForm").hide();
-                   $("#userIncorrect").css({"display":"block","color":"red"});
+                   $("#dbNotWorking").css({"display":"block","color":"red"});
                    $(".form-control[name='username']").val('');
                    $(".form-control[name='password']").val('');
             }

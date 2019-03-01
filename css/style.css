@@ -27,7 +27,7 @@ ul, ol {
 header {
     padding: 10px;
     min-height: 48px;
-    background-color: white;
+    height: 100px;
 }
 
 #logo {
@@ -39,6 +39,7 @@ header {
 header h1 {
     text-align: right;
     color: #3b8dbd;
+
 }
 
 #content-wrapper {
@@ -52,7 +53,7 @@ header h1 {
 #breadcrumb {
     background: #dcdcdc url("../img/house.png") 3px center no-repeat;
     padding: 10px 5px 10px 40px;
-    border: 1px solid #00aeef;
+    border: 1px solid #60c7c1;
     border-radius: 3px;
     box-shadow: 1px 1px 3px #c2c2c2;
     color: #245674;
@@ -67,7 +68,7 @@ footer {
     bottom: 0;
     position: fixed;
     width: 100%;
-    background-color: #3b8dbd;
+    background-color: #60c7c1;
     color: #ffffff;
     font-size: 0.9em;
     padding: 8px;
@@ -155,10 +156,6 @@ footer {
 .widget.collapsed .header {
     border-radius: 8px;
     background-image: url("../img/toggle-expand.png");
-}
-
-#content {
-    padding-left: 220px
 }
 
 .red-element {
