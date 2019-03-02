@@ -15,6 +15,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
+
 <body>
 <!--<div class="text-center">-->
 <!--&lt;!&ndash; Button HTML (to Trigger Modal) &ndash;&gt;-->
@@ -23,12 +24,12 @@
 
 <!-- Modal HTML -->
 
-    <div class="showOnLogged">
+    <div class="showOnLogged">  <!-- will be shown only after login -->
         <div id="layout" class="x-borders">
         <header>
             <div>
-                <a id="logo" href="." title="Blood Pressure Manager">
-                    <img src="img/heart_rate.png" alt="BloodPressureNotebook" title="BloodPressureNotebook">
+                <a id="logo" href="." title="Blood Pressure Manager" >
+                    <img src="img/heart_rate.png"  alt="BloodPressureNotebook" title="BloodPotebook">
                 </a>
                 <h1>                                   </h1>
             </div>
@@ -97,7 +98,8 @@
             </div>
             <div class="modal-footer">
                 <span id="userForm">Insert Username and Password</span>
-                <span id="userIncorrect">Username and Password don't match / User does not exist / Database connection is not working</span>
+                <p id="userForm2"> (For testing: Username and Password = David 13)</p>
+                <span id="userIncorrect">Username and Password don't match / User does not exist </span>
                 <span id="dbNotWorking">Database connection is not working </span>
             </div>
         </div>

@@ -3,7 +3,8 @@ table {
     border-collapse: collapse;
     width: 100%;
 }
-
+#bpTable{
+}
 th, td {
     text-align: left;
     padding: 8px;
@@ -19,3 +20,6 @@ th {
 .add-form {
     padding: 10px 0;
 }
+
+td .edit:hover , td .delete:hover{
+cursor: pointer; }

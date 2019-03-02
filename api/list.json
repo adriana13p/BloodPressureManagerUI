@@ -1,18 +1,33 @@
 {
-"id": 14,
-"name": "My agenda",
-"contacte": [
-{
-"id": 15,
-"firstName": "Ana",
-"lastName": "Popescu",
-"phone": "33333"
-},
-{
-"id": 22,
-"firstName": "Ion",
-"lastName": "Georgescu",
-"phone": "22222"
-}
+"id":1,
+"name": "bpList",
+"bp": [
+  {
+    "idBP": 25,
+    "systolicBP": 130,
+    "diastolicBP": 83,
+    "pulseBP": 87,
+    "dateBP": "2019-12-12T11:00:00.000+0000",
+    "notesBP": "",
+    "idUser": 2
+  },
+  {
+    "idBP": 20,
+    "systolicBP": 112,
+    "diastolicBP": 76,
+    "pulseBP": 86,
+    "dateBP": "2019-12-11T20:12:00.000+0000",
+    "notesBP": "edited",
+    "idUser": 2
+  },
+  {
+    "idBP": 11,
+    "systolicBP": 119,
+    "diastolicBP": 77,
+    "pulseBP": 74,
+    "dateBP": "2019-02-19T10:15:00.000+0000",
+    "notesBP": "no medication",
+    "idUser": 2
+  }
 ]
 }
