@@ -115,8 +115,8 @@ window.BP_Notebook = {
             '<td><input type="text" required name="diastolic" placeholder="Enter diastolic value"></td>' +
             '<td><input type="text" required name="pulse" placeholder="Enter pulse value"></td>' +
             '<td><input type="text" name="notes" placeholder="Enter notes"></td>' +
-            '<td><button class = "saveButton" type="submit"></button></td>' +
-            '<td><button class = "cancelButton" type="submit" onclick="BP_Notebook.cancelEdit(this)"></button></td>' +
+            '<td><button class = "saveButton" type="submit" title="Save"></button></td>' +
+            '<td><button class = "cancelButton" type="submit" title="Cancel" onclick="BP_Notebook.cancelEdit(this)"></button></td>' +
             '</tr>';
     },
 
@@ -244,7 +244,7 @@ window.BP_Notebook = {
         //clear the inputs
         $( ".add-form" ).get(0).reset();
         //in case a edit is canceled set the editBPId back to null
-        window.editBPId = '';
+        window.editBPId = null;
     },
 
     display: function(list) {
