@@ -11,64 +11,14 @@
     <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/table.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 
 <body>
-<!--<div class="text-center">-->
-<!--&lt;!&ndash; Button HTML (to Trigger Modal) &ndash;&gt;-->
-<!--<a href="#myModal" class="trigger-btn" data-toggle="modal">Click to Open Login Modal</a>-->
-<!--</div>-->
-
-<!-- Modal HTML -->
-
-    <div class="showOnLogged">  <!-- will be shown only after login -->
-        <div id="layout" class="x-borders">
-        <header>
-            <div>
-                <a id="logo" href="." title="Blood Pressure Manager" >
-                    <img src="img/heart_rate.png"  alt="BloodPressureNotebook" title="BloodPotebook">
-                </a>
-                <h1>                                   </h1>
-            </div>
-        </header>
-        <div id="content">
-            <div id="breadcrumb">
-
-                <div><button onclick="window.BP_Notebook.logOut(event);" type="submit"
-                                         class="logOut btn">Log Out
-                </button> </div>
-            </div>
-
-            <form class="add-form" action="" onsubmit="return false" method="post">
-                <table id="bpTable">
-                    <thead>
-                    <tr data-id="">
-                        <th>Date</th>
-                        <th>Systolic</th>
-                        <th>Diastolic</th>
-                        <th>Pulse</th>
-                        <th>Notes</th>
-                        <th>Actions</th>
-
-                    </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
-            </form>
-            <div class="clear"></div>
-        </div>
-
-        </div>
-        <footer>
-            <p></p>
-        </footer>
-    </div>
-</body>
+<!-- Login content-->
 <div id="myModal" class="modal fade in" style="display: block;">
     <div class="modal-dialog modal-login">
         <div class="modal-content">
@@ -101,6 +51,104 @@
                 <p id="userForm2"> (For testing: Username and Password = David 13)</p>
                 <span id="userIncorrect">Username and Password don't match / User does not exist </span>
                 <span id="dbNotWorking">Database connection is not working </span>
+                <p>(For creating new user click "Register)</p>
+                <div>
+                    <button onclick= "window.BP_Notebook.loadRegister();" type="submit"
+                            class = "register btn btn-primary btn-lg ">Register
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- After login content -->
+
+    <div class="showOnLogged">  <!-- will be shown only after login -->
+        <div id="layout" class="x-borders">
+        <header>
+            <div>
+                <a id="logo" href="." title="Blood Pressure Manager" >
+                    <img src="img/heart_rate.png"  alt="BloodPressureNotebook" title="BloodPotebook">
+                </a>
+                <h1>                                   </h1>
+            </div>
+        </header>
+        <div id="content">
+            <div id="breadcrumb">
+                <div>
+                    <button onclick="window.BP_Notebook.logOut(event);" type="submit"
+                                         class="logOut btn" >Log Out
+                    </button>
+                </div>
+            </div>
+
+            <form class="add-form" action="" onsubmit="return false" method="post">
+                <table id="bpTable">
+                    <thead>
+                    <tr data-id="">
+                        <th>Date</th>
+                        <th>Systolic</th>
+                        <th>Diastolic</th>
+                        <th>Pulse</th>
+                        <th>Notes</th>
+                        <th>Actions</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </form>
+            <div class="clear"></div>
+        </div>
+
+        </div>
+        <footer>
+            <p></p>
+        </footer>
+    </div>
+</body>
+
+<!-- Register content-->
+<div id ="showOnRegister">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-xl-9 mx-auto">
+                <div class="card card-signin flex-row my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Register</h5>
+                        <form class="form-signin">
+                            <div class="form-label-group">
+                                <input type="text" id="input-userame" class="form-control" placeholder="Username"
+                                       required autofocus>
+                            </div>
+                            <div>
+                                <span id="user-exists">Username already exist, please chose another user name </span>
+                            </div>
+                            <div class="form-label-group">
+                                <input type="password" id="input-password" class="form-control" placeholder="Password"
+                                       required>
+                            </div>
+
+                            <div class="form-label-group">
+                                <input type="password" id="input-confirm-password" class="form-control" placeholder=" Confirm password" required>
+
+                            </div>
+                            <div>
+                                <p id="password-size">Password must have at least 8 characters</p>
+                                <p id="user-saved">User is saved. Click on Sign In. </p>
+                                <p id="password-incorrect">Passwords don't match, please please enter the password again </p>
+                            </div>
+                            <div class="register-footer">
+                            <button onclick= "window.BP_Notebook.register();"
+                                    class="confirm-register btn btn-primary btn-lg btn-block" type="submit">Register</button>
+                            <a class="sign-in-link" href="#">Sign In</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

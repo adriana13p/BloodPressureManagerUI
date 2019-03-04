@@ -6,7 +6,8 @@ var API_URL = {
     LOAD_BP: 'http://localhost:8031/bloodPressureForUser/',
     CREATE_BP: 'http://localhost:8031/saveBloodPressureForUserName/',
     UPDATE_BP: 'http://localhost:8031/updateBloodPressure/',
-    DELETE: 'http://localhost:8031/deleteBloodPressure/'
+    DELETE: 'http://localhost:8031/deleteBloodPressure/',
+    CREATE_USER: 'http://localhost:8031/saveUser',
 };
 window.BP_Notebook = {
 
@@ -17,7 +18,81 @@ window.BP_Notebook = {
     //perform log out (the page is reloaded and the login modal is displayed)
          $(".showOnLogged").hide();
          //refresh
-         location.reload();;
+         location.reload();
+    },
+
+    loadRegister:function (){
+        //load the register modal
+        $("#myModal").hide();
+        $("#showOnRegister").css({"display":"block"});
+        $("#user-exists").hide();
+        $("#password-size").hide();
+        $("#password-incorrect").hide();
+        //hide all red texts from register
+        window.BP_Notebook.hideAllRegisterRedTexts();
+    },
+
+    hideRegisterElements:function (){
+            //hide register elements: inputs and register button
+             $("input#input-userame").hide();
+             $("input#input-password").hide();
+             $("input#input-confirm-password").hide();
+             $(".confirm-register.btn").hide();
+
+    },
+
+    hideAllRegisterRedTexts:function (){
+            //hide register elements: inputs and register button
+             $("#user-exists").hide();
+             $("#password-size").hide();
+             $("#password-incorrect").hide();
+    },
+
+    register: function(){
+    //perform register -> save user
+         //prevent default behaviour (reloading index.html)
+         event.preventDefault();
+         console.log(event);
+         //hide all red texts from register
+         window.BP_Notebook.hideAllRegisterRedTexts();
+         //get userName password and passwordConfirm
+         var usernameToRegister = $(event.target).parents(".form-signin").find('input#input-userame').val(),
+                     passToRegister = $(event.target).parents(".form-signin").find('input#input-password').val();
+                     confPassToRegister = $(event.target).parents(".form-signin").find('input#input-confirm-password').val();
+         //print username
+         console.log(" user = "+usernameToRegister);
+
+         if (passToRegister.length <8){
+                  //display password must be at least 8 characters
+                  $("#password-size").css({"display":"block"});
+         }else if (passToRegister == confPassToRegister){
+                 $.ajax({
+                    //set the URL and method for login
+                    url: API_URL.CREATE_USER,
+                    method: "POST",
+                    // set the @RequestParam for needed for the userSaveController
+                    data: jQuery.param({ userName: usernameToRegister, userPass : passToRegister}) ,
+
+                    }).done(function (response) {
+                             console.log("done");
+                               if (response) {
+                                     console.log("response save: "+response);
+                                    //after save is performed in db ,reload the login
+                                    window.BP_Notebook.hideRegisterElements();
+                                    //display user saved and sign in button
+                                    $("#user-saved").css({"display":"block"});
+                                    $(".sign-in-link").css({"display":"block"});
+                               }else{
+                               console.log("not saved, user already exists");
+                               //display user already exists
+                               $("#user-exists").css({"display":"block"});
+                               }
+                    })
+         }else{
+               //display passwords are incorrect (don't match)
+               $("#password-incorrect").css({"display":"block"});
+         }
+      return false;
     },
 
     login: function(event) {
@@ -237,6 +312,11 @@ window.BP_Notebook = {
             BP_Notebook.update(editBPId,bpToSave);
             }
         });
+
+         $('.card-signin').delegate('a.sign-in-link', 'click', function () {
+                  //when Sign In link is clicked , load the login
+                    location.reload();
+                });
     },
 
 

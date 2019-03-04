@@ -34,14 +34,12 @@ header {
 header h1 {
     text-align: right;
     color: #3b8dbd;
-
 }
 
 #content {
     padding: 10px 10px 10px 10px;
     margin-bottom: 35px;
 }
-
 
 #breadcrumb {
     background: #dcdcdc  3px center no-repeat;
@@ -67,27 +65,16 @@ footer {
     padding: 8px;
 }
 
-.logOut .btn{
-	 color: #fff;
-            border-radius: 4px;
-    		background: #60c7c1;
-    		text-decoration: none;
-    		transition: all 0.4s;
-            line-height: normal;
-            border: none;
-            align: right;
-	}
-
 .saveButton{
- background:  url("../img/save1.png")3px center no-repeat;
- font-size: 17px;
- padding: 18px;
- border-radius: 50%;
+    background:  url("../img/save1.png")3px center no-repeat;
+    font-size: 17px;
+    padding: 18px;
+    border-radius: 50%;
 }
 
 .cancelButton{
- background:  url("../img/cancel1.png")3px center no-repeat;
-  font-size: 17px;
-  padding: 18px;
-  border-radius: 50%;
+    background:  url("../img/cancel1.png")3px center no-repeat;
+    font-size: 17px;
+    padding: 18px;
+    border-radius: 50%;
 }
