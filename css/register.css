@@ -1,0 +1,98 @@
+
+ :root {
+   --input-padding-x: 1.5rem;
+   --input-padding-y: .75rem;
+ }
+
+
+ .card-signin {
+   background-color: #fff;
+   margin: 30px auto;
+   border: 0;
+   border-radius: 5px;
+   box-shadow: 0 5px 15px rgba(0,0,0,.5);
+   overflow: hidden;
+ }
+
+ .card-signin .card-title {
+   margin-bottom: 2rem;
+   font-weight: 300;
+   font-size: 18px;
+ }
+
+ .card-signin .card-body {
+   padding: 2rem;
+ }
+
+ .form-signin {
+   width: 100%;
+ }
+
+ .form-label-group {
+   position: relative;
+   margin-bottom: 1rem;
+ }
+
+ #showOnRegister{
+     display: none;
+ }
+
+ .confirm-register{
+     background: #60c7c1;
+  }
+
+ #user-exists, #password-incorrect, #password-size{
+    display:none;
+    color:red;
+    padding-left 5px;
+ }
+
+ #user-saved{
+    color: #70c5c0;
+     font-size: 26px;;
+    display: none;
+ }
+ .confirm-register.btn {
+     color: #fff;
+     border-radius: 4px;
+     background: #60c7c1;
+     text-decoration: none;
+  	 transition: all 0.4s;
+     line-height: normal;
+     border: none;
+     width: 70%;
+ }
+
+ .confirm-register.btn:hover, .confirm-register.btn:focus {
+  	background: #45aba6;
+  	outline: none;
+ }
+
+ .card-signin .form-control:focus {
+ 	border-color: #70c5c0;
+ }
+
+ .card-signin .form-control{
+    min-height: 40px;
+ }
+
+.sign-in-link{
+   font-size: 18px;
+   display:none;
+
+}
+
+.register-footer{
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    border-top: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    background: #ecf0f1;
+    border-color: #dee4e7;
+    text-align: center;
+    justify-content: center;
+    margin: 0 -20px -20px;
+    border-radius: 5px;
+    font-size: 13px;
+}
